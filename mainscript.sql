@@ -8,7 +8,6 @@ CREATE TABLE Branches (
     branch_name VARCHAR(100) NOT NULL,
     location VARCHAR(100) NOT NULL
 );
-
 ALTER TABLE Branches
 ADD COLUMN ifsc_code VARCHAR(20) NOT NULL DEFAULT '';
 
@@ -96,7 +95,10 @@ SELECT * FROM CUstomers;
 INSERT INTO Account_Types VALUES (1,'Savings'),(2,'Current');
 select * from account_types;
 
-INSERT INTO Accounts VALUES
+SELECT account_id, account_number, branch_id
+FROM Accounts;
+
+INSERT INTO Accounts (account_id, customer_id, branch_id, account_type_id, account_number, balance, opening_date, status) VALUES
 (101,1,1,1,'100000001',25000,'2025-01-01','Active'),
 (102,2,2,1,'100000002',50000,'2025-01-02','Active'),
 (103,2,2,2,'200000003',120000,'2025-01-03','Active'),
@@ -114,7 +116,7 @@ INSERT INTO Accounts VALUES
 (115,3,3,2,'200000015',110000,'2025-01-15','Active');
 select * from accounts;
 
-INSERT INTO Transactions VALUES
+INSERT INTO Transactions (transaction_id, account_id, transaction_type, amount, transaction_date, description) VALUES
 (1001,101,'Deposit',1000,'2025-07-01','Sample Deposit'),
 (1002,102,'Withdrawal',6000,'2025-07-02','Sample Withdrawal'),
 (1003,103,'Transfer',11000,'2025-07-03','Sample Transfer'),
@@ -146,8 +148,6 @@ INSERT INTO Transactions VALUES
 (1029,114,'Withdrawal',41000,'2025-07-29','Sample Withdrawal'),
 (1030,115,'Transfer',46000,'2025-07-30','Sample Transfer');
 select * from Transactions;
-
-
 
 -- 1. List all customer details
 SELECT * FROM Customers;
